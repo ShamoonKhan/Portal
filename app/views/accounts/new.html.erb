@@ -1,0 +1,17 @@
+<h1>New Account</h1>
+
+<%= form_for @account , url: {action: "create"} do |form| %>
+    <div>
+        <%= form.label :amount %><br>
+        <%= form.text_field :amount %>
+    </div>
+    <div>
+        <%= form.label :acc_num %><br>
+        <%= form.text_field :acc_num %>
+    </div>
+   <div>
+        <%= form.hidden_field :user_id , value: current_user.id %>
+    </div>
+        <%= form.button :submit %>
+    </div>
+<% end %>

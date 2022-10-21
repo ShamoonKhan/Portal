@@ -1,0 +1,17 @@
+<p>Name: <%= @student.name %></p>
+
+<p>Last Name: <%= @student.last_name %></p>
+
+<p>Email: <%= @student.email %></p>
+
+<p>Cnic: <%= @student.cnic %></p>
+
+<p>Roll no: <%= @student.roll_no %></p>
+
+
+<p>Role: <%= @student.role %></p>
+
+<p>Courses: <% @student.courses.each do |c| %>
+<%= c.course_name + "," %>
+<%end%>
+</p>

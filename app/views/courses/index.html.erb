@@ -1,0 +1,32 @@
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+
+<table>
+  <tr>
+    <th>Course Name</th>
+    <th>Course Type</th>
+    
+  </tr>
+  <% @course.each do |x|%>
+<tr>
+<td><%= x.course_name %></td>
+<td><%= x.course_type %></td>
+</tr>
+<% end %>
+
+</table>
