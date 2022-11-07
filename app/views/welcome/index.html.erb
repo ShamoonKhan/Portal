@@ -1,0 +1,103 @@
+<% if current_user.admin?%>
+<button class="teacher_btn">View Teachers</button>
+<button class="student_btn">View Sudents</button>
+<%end%>
+
+<style>
+button a{
+  color :black;
+  text-decoration: none;
+}
+button a:hover{
+  color :black;
+}
+</style>
+
+<div class = "students">
+<h1>Listing Students</h1>
+<table class="table table-striped teacher">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>CNIC</th>
+            <th>Contact</th>
+            <th>Address</th>
+            <th collspan="3">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <%- @users.student.each do |user| %>
+          <tr>
+            <td> <%= user.first_name%></td>
+            <td> <%= user.lname %></td>
+            <td> <%= user.email %></td>
+            <td> <%= user.cnic_no %></td>
+            <td> <%= user.contact %></td>
+             <td> <%= user.address %></td>
+           <td><button type="button" class="btn btn-danger"><%= link_to 'Destroy', user_path(user),
+            method: :delete,
+            data: { confirm: 'Are you sure?' } %></button></td>
+            <td><button type="button" class="btn btn-outline-primary ms-1"><%= link_to 'Edit', edit_user_path(user)%></button></td>
+              <td><button type="button" class="btn btn-outline-primary ms-1"><%= link_to 'Show', user_path(user)%></button></td>
+          </tr>
+        <% end %>
+    </tbody>
+</table>
+
+</div>
+
+<div class = "teachers">
+<h1>Listing Teachers</h1>
+<table class="table table-striped student">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>CNIC</th>
+            <th>Contact</th>
+            <th>Address</th>
+            <th collspan="3">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <%- @users.teacher.each do |user| %>
+          <tr>
+            
+            <td> <%= user.first_name%></td>
+            <td> <%= user.lname %></td>
+            <td> <%= user.email %></td>
+            <td> <%= user.cnic_no %></td>
+            <td> <%= user.contact %></td>
+             <td> <%= user.address %></td>
+            <td><button type="button" class="btn btn-danger"><%= link_to 'Destroy', user_path(user),
+            method: :delete,
+            data: { confirm: 'Are you sure?' } %></button></td>
+            <td><button type="button" class="btn btn-outline-primary ms-1"><%= link_to 'Edit', edit_user_path(user)%></button></td>
+              <td><button type="button" class="btn btn-outline-primary ms-1"><%= link_to 'Show', user_path(user)%></button></td>
+          </tr>
+        <% end %>
+    </tbody>
+</table>
+</div>
+
+
+<script>
+
+
+$(document).ready(function(){
+ 
+  $(".students").hide();
+  $(".teachers").hide();
+  $(".teacher_btn").click(function(){
+  $(".students").hide();
+  $(".teachers").show();
+  });
+  $(".student_btn").click(function(){
+   $(".students").show();
+  $(".teachers").hide();
+  });
+});
+</script>

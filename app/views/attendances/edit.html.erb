@@ -1,0 +1,12 @@
+<h1>Update Attendance</h1>
+
+<%= form_for @attendance , url: {action: "update"} do |form| %>
+  <div>
+    <%= form.label :date %><br>
+    <%= form.date_field :date %>
+  </div>
+  <%= form.collection_select :user_id, User.where(role: "student").all, :id, :first_name %>
+  <%= form.collection_select :course_id, Course.all, :id, :course_name %>
+  <%= form.check_box :present %>
+  <%= form.button :submit %>
+<% end %>

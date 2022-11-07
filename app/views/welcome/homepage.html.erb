@@ -1,3 +1,14 @@
+<style>
+button a{
+    color: #000;
+    text-decoration: none;
+}
+button a:hover{
+  color: #000;
+}
+</style>
+
+
 <h1>Welcome to my Site</h1>
 
-<button><%= link_to "Login" , new_user_session_path %> </button> <button><%= link_to "Signup" , new_user_registration_path %> </button>
+<button type="button" class="btn btn-outline-primary ms-1"><%= link_to "Login" , new_user_session_path %> </button> <button type="button" class="btn btn-outline-primary ms-1"><%= link_to "Signup" , new_user_registration_path %> </button>

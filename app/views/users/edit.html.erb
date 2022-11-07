@@ -1,0 +1,34 @@
+<%= form_for @user do |u| %>
+
+    <div>
+        <%= u.label :email %><br>
+        <%= u.text_field :email %>
+    </div>
+    <div>
+        <%= u.label :first_name %><br>
+        <%= u.text_field :first_name %>
+    </div>
+    <div>
+        <%= u.label :Last_name %><br>
+        <%= u.text_field :lname %>
+    </div>
+     <div>
+    <%= u.label :"Profile Image" %><br />
+    <%= u.file_field :avatar %>
+  </div>
+    <div>
+        <%= u.label :cnic %><br>
+        <%= u.text_field :cnic_no %>
+    </div>
+     <div>
+        <%= u.label :contact %><br>
+        <%= u.text_field :contact %>
+    </div>
+     <div>
+     <%= u.label :Address %><br/>
+     <%= u.text_field :address %>
+  </div>
+     <div>
+    <%= u.submit %>
+  </div>
+<% end %>

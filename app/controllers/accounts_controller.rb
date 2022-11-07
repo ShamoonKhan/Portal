@@ -1,4 +1,6 @@
 class AccountsController < ApplicationController
+    before_action :authenticate_user!
+    
     def index
         @accounts = Account.all
     end
@@ -37,7 +39,7 @@ class AccountsController < ApplicationController
     def destroy
         @account = Account.find(params[:id])
         @account.destroy
-        redirect_to root_path, status: :see_other
+        redirect_to accounts_path, status: :see_other
     end
 
     private

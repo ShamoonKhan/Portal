@@ -1,10 +1,39 @@
+<table>
+  <tr>
+    <th>Student</th>
+    <th>Course</th>
+    <th>Attendance</th>
+     <th>Teachers</th>
+  
+    
+  </tr>
+  <% @course.each do |x|%>
+  <tr>
+      <td><%= x.course_name %></td>
+      <td><%= x.course_type %></td>
+      <td><%= x.credithrs %></td>
+
+            <% user_name = User.find_by(id: x.user_id) %> 
+
+            <% if user_name.present? %>
+      <td><%= user_name.first_name %> <%= user_name.lname %></td>
+      <% end %>
+            <td><button type="button" class="btn btn-danger"><%= link_to 'Destroy', course_path(x),
+            method: :delete,
+            data: { confirm: 'Are you sure?' } %></button></td>
+            <td><button type="button" class="btn btn-outline-primary ms-1"><%= link_to 'Edit', edit_course_path(x)%></button></td>
+              <td><button type="button" class="btn btn-outline-primary ms-1"><%= link_to 'Show', course_path(x)%></button></td>
+  </tr>
+<% end %>
+
+</table>
+
 <style>
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 100%;
 }
-
 td, th {
   border: 1px solid #dddddd;
   text-align: left;
@@ -14,19 +43,14 @@ td, th {
 tr:nth-child(even) {
   background-color: #dddddd;
 }
+
+button a{
+  color :black;
+  text-decoration: none;
+}
+button a:hover{
+  color :black;
+}
 </style>
 
-<table>
-  <tr>
-    <th>Course Name</th>
-    <th>Course Type</th>
-    
-  </tr>
-  <% @course.each do |x|%>
-<tr>
-<td><%= x.course_name %></td>
-<td><%= x.course_type %></td>
-</tr>
-<% end %>
 
-</table>

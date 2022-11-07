@@ -1,0 +1,174 @@
+<section style="background-color: #eee;">
+<div class="container py-5">
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="card mb-4">
+        <div class="card-body text-center">
+          <% if current_user.avatar.present? %>
+            <%= image_tag(current_user.avatar, width: "70%", height: "50%")%>
+          <%else%>
+            <p> no picture </p>
+          <%end%>
+          <h5 class="my-3"><%= current_user.first_name %> <%= current_user.lname %></h5>
+          <p class="text-muted mb-1"><%= current_user.role %></p>
+          <p class="text-muted mb-4"><%= current_user.address %></p>
+          <div class="d-flex justify-content-center mb-2">
+            <button type="button" class="btn btn-outline-primary ms-1"><%= link_to 'Edit Profile', edit_user_registration_path %> </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-8">
+      <div class="card mb-4">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-3">
+              <p class="mb-0">Full Name</p>
+            </div>
+            <div class="col-sm-9">
+              <p class="text-muted mb-0"><%= current_user.first_name %> <%= current_user.lname %></p>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <p class="mb-0">Email</p>
+            </div>
+            <div class="col-sm-9">
+              <p class="text-muted mb-0"><%= current_user.email %></p>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <p class="mb-0">CNIC</p>
+            </div>
+            <div class="col-sm-9">
+              <p class="text-muted mb-0"><%= current_user.cnic_no %></p>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <p class="mb-0">Mobile</p>
+            </div>
+            <div class="col-sm-9">
+              <p class="text-muted mb-0"><%= current_user.contact %></p>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <p class="mb-0">Address</p>
+            </div>
+            <div class="col-sm-9">
+              <p class="text-muted mb-0"><%= current_user.address %></p>
+            </div>
+          </div>
+         </div>
+          </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card mb-4 mb-md-0">
+            <div class="card-body">
+             <% if current_user.role == "student"%>
+              <h3 class="mb-4"><span class="text-primary font-italic me-1">Choose Courses</span></h3>
+              <%= form_for current_user  do  |c| %>
+                <%= c.collection_check_boxes :course_ids, Course.all, :id, :course_name do |c| %>
+                  <%= c.label {c.check_box + c.text} %>
+                <% end %>
+                <%= c.hidden_field :user_id , value: current_user.id %><br>
+                <%= c.submit "Register"%>
+              <% end %> 
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card mb-4 mb-md-0">
+          <div class="card-body">
+            <h3 class="mb-4"><span class="text-primary font-italic me-1">Your Courses</span></h3>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Course Name</th>
+                  <th>Course Type</th>
+                  <th>Credit Hours</th>
+                  <th>View Assessment</th>
+                  <% if current_user.student? %>
+                  <th>Teacher</th>
+                  <%end%>
+                </tr>
+              </thead>
+              <tbody>
+                <% current_user.courses.each do |course| %>
+                  <tr>
+                    <td> </td>
+                    <td> <%= course.course_type%></td>
+                    <td> <%= course.credithrs%></td>
+
+                       <td> <%= %></td>
+
+                      <% user_name = User.find_by(id: course.user_id) %> 
+                    <% if current_user.student? %>
+                    <td><%= user_name.first_name %> <%= user_name.lname %></td>
+                    <% end %>
+
+                    <!--
+                       <% if user_name.present? %>
+                     <td><%= user_name.first_name %> <%= user_name.lname %></td>
+                     <% end %>
+                  -->
+                  </tr>
+                <%end%>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+ <% end %> 
+</section>
+
+<style>
+button a{
+color: #000;
+text-decoration: none;
+}
+button a:hover{
+color: #000;
+}
+</style>
+
+<script>
+
+$( document ).ready(function() {
+$(document).ready(function() {
+$('.js-example-basic-multiple').select2();
+});
+});
+
+</script>
+
+
+ <script>
+      function readURL(input) {
+        if (input.files && input.files[0]) {
+          var reader = new FileReader();
+
+          reader.onload = function (e) {
+            $('#img_prev')
+              .attr('src', e.target.result)
+              .width(150)
+              .height(200);
+          };
+
+          reader.readAsDataURL(input.files[0]);
+        }
+      }
+    </script>

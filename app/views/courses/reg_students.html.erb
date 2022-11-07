@@ -1,0 +1,19 @@
+<%= %>
+<table class="table table-striped">
+  <tr>
+    <th>Students</th>
+    <th>Attendance</th>
+  </tr>
+  <%- @users.student.each do |user| %>
+    <tr>
+      <% user_name = User.find_by(role: "student") %> 
+      <td> <%= user.first_name%> <%= user.lname %> </td>
+      <td>
+      <%= form_tag users_path do %>
+        <%= check_box_tag "users_id[]", user.id  -%> 
+     <%end%>
+     </td>
+    </tr>
+    
+  <% end %>        
+</table>     

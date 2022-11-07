@@ -1,0 +1,40 @@
+<table class="table table-striped student">
+  <thead>
+    <tr>
+      <th>Student Name</th>
+      <th>Course</th>
+      <th>Date</th>
+      <th>Attendance</th>
+      <th collspan="3">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%- @attendances.each do |user| %>
+      <tr>
+        <% user_name = User.find_by(id: user.user_id) %>
+        <% if user_name.present? %>
+          <td><%= user_name.first_name %> <%= user_name.lname %></td>
+        <% end %>
+        <% course_p = Course.find_by(id: user.course_id) %>
+        <td><%= course_p.course_name %></td>
+        <td><%= user.date %></td>
+        <td><%= user.present%></td>
+        <td><button type="button" class="btn btn-danger"><%= link_to 'Destroy', attendance_path(user),
+            method: :delete,
+            data: { confirm: 'Are you sure?' } %></button></td>
+            <td><button type="button" class="btn btn-outline-primary ms-1"><%= link_to 'Edit', edit_attendance_path(user)%></button></td>
+              <td><button type="button" class="btn btn-outline-primary ms-1"><%= link_to 'Show', attendance_path(user)%></button></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<style>
+button a{
+  color :black;
+  text-decoration: none;
+}
+button a:hover{
+  color :black;
+}
+</style>

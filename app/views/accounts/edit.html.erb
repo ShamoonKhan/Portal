@@ -1,0 +1,14 @@
+<h1>Edit Account</h1>
+<%= form_for @account do |u| %>
+<div>
+        <%= u.label :Amount %><br>
+        <%= u.text_field :amount %>
+    </div>
+ <div>
+        <%= u.label :Account_Number %><br>
+        <%= u.text_field :acc_num%>
+    </div>
+     <div>
+    <%= u.submit %>
+  </div>
+<%end%>

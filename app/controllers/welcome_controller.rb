@@ -1,9 +1,10 @@
 class WelcomeController < ApplicationController
-
-def homepage
-end
-
-def dash 
-end
-
+  before_action :authenticate_user!
+    def homepage
+    end
+    def index
+        @users = User.all
+    end
+    
+    
 end
