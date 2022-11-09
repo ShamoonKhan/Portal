@@ -5,18 +5,18 @@
 
 
  <div>
-     <%= f.label :name %><br />
-     <%= f.text_field :name, autofocus: true %>
+     <%= f.label :first_name %><br />
+     <%= f.text_field :first_name %>
 </div>
 
    <div class="field">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name %>
+    <%= f.label :Last_name %><br />
+    <%= f.text_field :lname %>
   </div>
 
   <div class="field">
-    <%= f.label :cnic %><br />
-    <%= f.text_field :cnic %>
+    <%= f.label :cnic_no %><br />
+    <%= f.text_field :cnic_no %>
   </div>
 
 
@@ -24,7 +24,20 @@
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
+  <div id ="pictureInput">
+    <%= f.label :"Profile Image" %><br />
+    <%= f.file_field :avatar %>
+    <div id="target">
+  </div>
 
+   <div>
+     <%= f.label :Contact %><br />
+     <%= f.text_field :contact %>
+  </div>
+   <div>
+     <%= f.label :Address %><br />
+     <%= f.text_field :address %>
+  </div>
   <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
@@ -38,16 +51,32 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
-  <div class="field">
-    <%= f.label :roll_no %><br />
-    <%= f.text_field :roll_no %>
-  </div>
-
   <%= f.label :Role %><br>
-  <%= f.select :role, User.roles.keys %>
+  <%= f.select :role, options_for_select(User.roles.keys) %>
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
 <% end %>
 
 <%= render "users/shared/links" %>
+
+
+<script>
+$(function() {
+  $('#pictureInput').on('change', function(event) {
+    var files = event.target.files;
+    var image = files[0]
+    // here's the file size
+    console.log(image.size);
+    var reader = new FileReader();
+    reader.onload = function(file) {
+      var img = new Image();
+      console.log(file);
+      img.src = file.target.result;
+      $('#target').html(img);
+    }
+    reader.readAsDataURL(image);
+    console.log(files);
+  });
+});
+</script>

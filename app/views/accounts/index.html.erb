@@ -14,19 +14,31 @@ td, th {
 tr:nth-child(even) {
   background-color: #dddddd;
 }
+button a{
+  color :black;
+  text-decoration: none;
+}
+button a:hover{
+  color :black;
+}
 </style>
 
 <table>
   <tr>
     <th>Amount</th>
     <th>Account Number</th>
-    
+  <th collspan="3">Action</th>
 
   </tr>
   <%- @accounts.each do |x|%>
 <tr>
 <td><%= x.amount %></td>
 <td><%= x.acc_num %></td>
+<td><button type="button" class="btn btn-danger"><%= link_to 'Destroy', account_path(x),
+            method: :delete,
+            data: { confirm: 'Are you sure?' } %></button></td>
+            <td><button type="button" class="btn btn-outline-primary ms-1"><%= link_to 'Edit', edit_account_path(x)%></button></td>
+              <td><button type="button" class="btn btn-outline-primary ms-1"><%= link_to 'Show', account_path(x)%></button></td>
 </tr>
 <% end %>
 

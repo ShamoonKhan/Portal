@@ -9,9 +9,15 @@
         <%= form.label :course_type %><br>
         <%= form.text_field :course_type %>
     </div>
-   <div>
-        <%= form.hidden_field :user_id , value: current_user.id %>
+
+    <div>
+        <%= form.label :credit_hours %><br>
+        <%= form.text_field :credithrs %>
     </div>
+     <div>
+        <%= form.select :table_user_course_ids, options_for_select(User.where(role: "teacher").collect { | user | [user.first_name, user.id] }), {}, {} %>
+    </div>
+     <div>
         <%= form.button :submit %>
     </div>
 <% end %>

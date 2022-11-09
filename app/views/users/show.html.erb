@@ -1,0 +1,124 @@
+<section style="background-color: #eee;">
+  <div class="container py-5">
+
+
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="card mb-4">
+          <div class="card-body text-center">
+             <% if @user.avatar.present? %>
+             <%= image_tag(@user.avatar, width: "70%", height: "50%")%>
+             <%else%>
+             <p> no picture </p>
+             <%end%>
+            
+            <h5 class="my-3"><%= @user.first_name %> <%= @user.lname %></h5>
+            <p class="text-muted mb-1"><%= @user.role %></p>
+            <p class="text-muted mb-4"><%= @user.address %></p>
+            <div class="d-flex justify-content-center mb-2">
+         
+              <button type="button" class="btn btn-outline-primary ms-1"><%= link_to 'Edit Profile', edit_user_path %> 
+</button>
+            </div>
+          </div>
+        </div>
+     
+      </div>
+      <div class="col-lg-8">
+        <div class="card mb-4">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Full Name</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><%= @user.first_name %> <%= @user.lname %></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Email</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><%= @user.email %></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">CNIC</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><%= @user.cnic_no %></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Mobile</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><%= @user.contact %></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Address</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><%= @user.address %></p>
+              </div>
+            </div>
+          </div>
+        </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card mb-4 mb-md-0">
+          <div class="card-body">
+            <h3 class="mb-4"><span class="text-primary font-italic me-1">Registered Courses</span></h3>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Course Name</th>
+                  <th>Course Type</th>
+                  <th>Credit Hours</th>
+                  <th> Teacher</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @user.courses.each do |user| %>
+                  <tr>
+                    <td> <%= user.course_name%></td>
+                    <td> <%= user.course_type%></td>
+                    <td> <%= user.credithrs%></td>
+                    
+                  </tr>
+                <%end%>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+        
+        </div>
+
+
+  </div>
+    </div>
+  </div>
+</section>
+
+<style>
+
+button a{
+    color: #000;
+    text-decoration: none;
+}
+button a:hover{
+  color: #000;
+}
+</style>
