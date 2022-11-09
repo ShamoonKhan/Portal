@@ -39,9 +39,12 @@
 
  <div id ="pictureInput">
     <%= f.label :"Profile Image" %><br />
-    <%= f.file_field :avatar %>
-    <div id="target">
-</div>
+    <%= f.file_field :avatar, onchange: "readURL(this)"%>
+    <div id="image_preview">
+        <% if current_user.avatar.present? %>
+          <%= image_tag(current_user.avatar, id: "img_prev", src:"#", alt: "no image")%>
+        <% end %>
+    </div>
   </div>
 
    <div>
@@ -74,24 +77,16 @@
 <%= link_to "Back", :back %>
 
 <script>
-$(function() {
-  $('#pictureInput').on('change', function(event) {
-    var files = event.target.files;
-    var image = files[0]
-    // here's the file size
-    console.log(image.size);
-    var reader = new FileReader();
-    reader.onload = function(file) {
-      var img = new Image();
-      console.log(file);
-      img.src = file.target.result;
-      $('#target').html(img);
-    
+function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        $('#img_prev')
+          .attr('src', e.target.result)
+          .width(100)
+          .height(100);
+      };
+      reader.readAsDataURL(input.files[0]);
     }
-    reader.readAsDataURL(image);
-    width(50);
-    height(50);
-    console.log(files);
-  });
-});
+  }
 </script>

@@ -3,13 +3,13 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
-  root "users#index"
+  root 'users#index'
   get 'welcome/index'
   resources :courses do
     collection do
       get :reg_students
     end
-  end  
+  end
   resources :accounts
   resources :users
   resources :welcome

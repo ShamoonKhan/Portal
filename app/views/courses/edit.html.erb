@@ -13,7 +13,7 @@
         <%= u.text_field :credithrs %>
     </div>
        <div>
-        <%= u.select :user_id, options_for_select(User.where(role: "teacher").collect { | user | [user.first_name,+" "+ user.lname, user.id, user.lname,] }), {}, {} %>
+        <%= u.select :table_user_course_ids, options_for_select(User.where(role: "teacher").collect { | user | [user.first_name,+" "+ user.lname, user.id, user.lname,] }), {}, {} %>
 
     </div>
      <div>

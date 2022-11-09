@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
 
-  enum role: [:student, :teacher, :admin] 
+  enum role: %i[student teacher admin]
   after_initialize :set_default_role, if: :new_record?
   has_many :table_user_courses
   has_many :courses, through: :table_user_courses
@@ -15,7 +15,9 @@ class User < ApplicationRecord
   # user.avatar.purge
   # user.avatar.exist? # => false
   validates_presence_of :avatar
+
   private
+
   def set_default_role
     self.role ||= :admin
   end

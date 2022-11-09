@@ -1,10 +1,10 @@
 <table>
   <tr>
-    <th>Student</th>
-    <th>Course</th>
-    <th>Attendance</th>
-     <th>Teachers</th>
-  
+    <th>Course Name</th>
+    <th>Course Type</th>
+    <th>Credit</th>
+    <th>Teachers</th>
+    <th collspan="3">Action</th>
     
   </tr>
   <% @course.each do |x|%>
@@ -12,17 +12,12 @@
       <td><%= x.course_name %></td>
       <td><%= x.course_type %></td>
       <td><%= x.credithrs %></td>
-
-            <% user_name = User.find_by(id: x.user_id) %> 
-
-            <% if user_name.present? %>
-      <td><%= user_name.first_name %> <%= user_name.lname %></td>
-      <% end %>
-            <td><button type="button" class="btn btn-danger"><%= link_to 'Destroy', course_path(x),
+      <td> </td>
+        <td><button type="button" class="btn btn-danger"><%= link_to 'Destroy', course_path(x),
             method: :delete,
             data: { confirm: 'Are you sure?' } %></button></td>
-            <td><button type="button" class="btn btn-outline-primary ms-1"><%= link_to 'Edit', edit_course_path(x)%></button></td>
-              <td><button type="button" class="btn btn-outline-primary ms-1"><%= link_to 'Show', course_path(x)%></button></td>
+        <td><%= link_to 'Edit', edit_course_path(x), class: 'btn btn-outline-primary'%></td>
+        <td><button type="button" class="btn btn-outline-primary ms-1"><%= link_to 'Show', course_path(x)%></button></td>
   </tr>
 <% end %>
 
