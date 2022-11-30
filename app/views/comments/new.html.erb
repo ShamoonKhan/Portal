@@ -1,0 +1,14 @@
+<h1>Your Feedback</h1>
+
+<%= form_for @comment , url: {action: "create"} do |form| %>
+    <div>
+        <%= form.label :title %><br>
+        <%= form.text_field :title %>
+    </div>
+    <div>
+        <%= form.label :detail %><br>
+        <%= form.text_field :descreption %>
+    <div>
+        <%= form.button :submit ,class: "btn btn-primary"%>
+    </div>
+<% end %>

@@ -3,6 +3,7 @@ class WelcomeController < ApplicationController
   def homepage; end
 
   def index
+   
     @users = User.all
   end
 end

@@ -6,17 +6,11 @@
       <div class="col-lg-4">
         <div class="card mb-4">
           <div class="card-body text-center">
-             <% if @user.avatar.present? %>
-             <%= image_tag(@user.avatar, width: "70%", height: "50%")%>
-             <%else%>
-             <p> no picture </p>
-             <%end%>
-            
+             <%= show_avatar(@user)%>
             <h5 class="my-3"><%= @user.first_name %> <%= @user.lname %></h5>
             <p class="text-muted mb-1"><%= @user.role %></p>
             <p class="text-muted mb-4"><%= @user.address %></p>
             <div class="d-flex justify-content-center mb-2">
-         
               <button type="button" class="btn btn-outline-primary ms-1"><%= link_to 'Edit Profile', edit_user_path %> 
 </button>
             </div>
@@ -93,7 +87,8 @@
                     <td> <%= user.course_name%></td>
                     <td> <%= user.course_type%></td>
                     <td> <%= user.credithrs%></td>
-                    
+                    <% user_id = UserCourse.find_by(course_id: user.id).user_id %>
+                    <td><%= User.find(user_id).first_name %> <%= User.find(user_id).lname %> </td>
                   </tr>
                 <%end%>
               </tbody>

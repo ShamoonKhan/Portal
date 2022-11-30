@@ -1,0 +1,32 @@
+<h1><%= @assignment.name %>
+
+ <% if current_user.teacher %>
+    <%= link_to "Edit Assignment", edit_assignment_path, class: 'btn btn-success btn-sm round' %>
+    <%= link_to "Delete Assignment", @assignment, method: :delete, class: 'btn btn-danger btn-sm round ', data: { confirm: 'Are you sure you want to delete this assignment?' } %>
+<% end %>
+ </h1>
+ <div class="row">
+   <div class="col-md-8">
+     <p class="lead"><%= @assignment.description %></p>
+ <!-- #10 -->
+     <% @assignment.submits.each do |submit| %>
+       <div class="media">
+         <div class="media-body">
+           <h4 class="media-heading">
+             <%= link_to submit.name, submit %>
+           </h4>
+         </div>
+       </div>
+     <% end %>
+   </div>
+
+
+   <div id="img">
+    <%= image_tag @assignment.picture.url(:large) %>
+  </div>
+
+  <br>
+   <div class="col-md-4">
+     <%= link_to "Submit Assignment", new_submit_path(@assignment), class: 'button' %>
+   </div>
+ </div>

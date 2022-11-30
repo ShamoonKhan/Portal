@@ -1,23 +1,25 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-primary">
   <a class="navbar-brand" href="#">University Portal</a>
     <% if user_signed_in? %>
-      <% if current_user.admin? %>
+      <%if current_user.admin?%>
         <%= link_to "View all Accounts", accounts_path, class: "btn btn-primary"%>
         <%= link_to "Add Account", new_account_path, class: "btn btn-primary"%> 
         <%= link_to "Add Courses", new_course_path, class: "btn btn-primary"%> 
         <%= link_to "View all courses", courses_path, class: "btn btn-primary"%>
         <%= link_to 'All data', welcome_index_path, class: "btn btn-primary" %>
         
+        <% end %>
       <% end %>
       
        <% if current_user.teacher? %>
       <%= link_to 'attendance', new_attendance_path, class: "btn btn-primary" %>
+      <%= link_to 'Add Feedback', new_comment_path, class: "btn btn-primary" %>
       <%end%>
       <% if current_user.admin? || current_user.student? || current_user.teacher? %>
         <%= link_to "Profile", users_path, class: "btn btn-primary" %>
         <%= button_to "Logout" , destroy_user_session_path, method: :delete, class: "btn btn-primary"%>
       <% end %>  
-    <%end%>
+    
 </nav>
 
 

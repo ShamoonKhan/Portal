@@ -1,0 +1,36 @@
+ <div class="col-lg-12 text-center">
+<h1>Assignments 
+
+    <% if current_user.teacher?%>
+     <%= link_to "New Assignment", new_assignment_path, class: 'btn btn-success' %>
+     <% end %>
+        <hr>
+</h1>
+  </div>
+
+ <div class="row">
+   <div class="col-md-10">
+ <!-- #7 -->
+     <% @assignments.each do |assignment| %>
+       <div class="media">
+         <div class="media-body">
+           <h3 class="media-heading">
+ <!-- #8 <--> 
+             <%= link_to assignment.name, assignment %>
+           </h3>
+                                   <!-- Date/Time 
+        <p><span class="glyphicon glyphicon-time"></span> 
+        <%= time_ago_in_words(assignment.created_at) %> ago
+        </p>
+        -->
+           <small>
+             <%= assignment.description %>
+           </small>
+         </div>
+       </div>
+       <hr>
+     <% end %>
+   </div>
+   <br>
+
+   </div>

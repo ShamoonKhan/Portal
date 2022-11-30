@@ -12,12 +12,15 @@
       <td><%= x.course_name %></td>
       <td><%= x.course_type %></td>
       <td><%= x.credithrs %></td>
-      <td> </td>
-        <td><button type="button" class="btn btn-danger"><%= link_to 'Destroy', course_path(x),
+      <% user_id = UserCourse.find_by(course_id: x.id).user_id %>
+      <% if user_id.present?%>
+      <td><%= User.find(user_id).first_name %> <%= User.find(user_id).lname %></td>
+      <% end %>
+        <td><%= link_to 'Destroy', course_path(x),
             method: :delete,
-            data: { confirm: 'Are you sure?' } %></button></td>
+            data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
         <td><%= link_to 'Edit', edit_course_path(x), class: 'btn btn-outline-primary'%></td>
-        <td><button type="button" class="btn btn-outline-primary ms-1"><%= link_to 'Show', course_path(x)%></button></td>
+        <td><%= link_to 'Show', course_path(x), class: 'btn btn-outline-primary'%></td>
   </tr>
 <% end %>
 

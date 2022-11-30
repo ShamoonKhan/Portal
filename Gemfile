@@ -75,3 +75,8 @@ gem 'activestorage'
 gem 'jquery-rails'
 gem 'select2-rails', '~> 4.0', '>= 4.0.13'
 gem 'rubocop', require: false
+gem "letter_opener", group: :development
+gem 'carrierwave', '~> 2.0'
+gem 'pundit', '~> 2.2'
+gem 'cancancan'
+gem 'ransack'

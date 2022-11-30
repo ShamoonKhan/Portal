@@ -27,18 +27,22 @@ button a:hover{
   <tr>
     <th>Amount</th>
     <th>Account Number</th>
-  <th collspan="3">Action</th>
+    <th>Teacher Name</th>
+    <th collspan="3">Action</th>
 
   </tr>
   <%- @accounts.each do |x|%>
-<tr>
-<td><%= x.amount %></td>
-<td><%= x.acc_num %></td>
-<td><button type="button" class="btn btn-danger"><%= link_to 'Destroy', account_path(x),
+  <tr>
+    <td><%= x.amount %></td>
+    <td><%= x.acc_num %></td>
+   
+     <td><%= user_name = Account.find_by(id: x.user_id) %></td>
+     
+    <td><%= link_to 'Destroy', account_path(x), class: "btn btn-danger",
             method: :delete,
-            data: { confirm: 'Are you sure?' } %></button></td>
-            <td><button type="button" class="btn btn-outline-primary ms-1"><%= link_to 'Edit', edit_account_path(x)%></button></td>
-              <td><button type="button" class="btn btn-outline-primary ms-1"><%= link_to 'Show', account_path(x)%></button></td>
+            data: { confirm: 'Are you sure?' } %></td>
+            <td><%= link_to 'Edit', edit_account_path(x), class: 'btn btn-outline-primary'%></td>
+              <td><%= link_to 'Show', account_path(x), class: 'btn btn-outline-primary'%></td>
 </tr>
 <% end %>
 

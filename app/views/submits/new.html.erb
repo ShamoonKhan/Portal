@@ -1,0 +1,35 @@
+<div class="text-center">
+<h1>Submit Assignment</h1>
+</div>
+<hr>
+
+<% if !@submit.errors.empty? %>
+   <div class = "alert alert-error">
+
+      <ul>
+         <% @submit.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+         <% end %>
+      </ul>
+
+   </div>
+<% end %>
+
+<div class = "well">
+   <%= form_for @submit, html: { multipart: true } do |f| %>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+      <br />
+      <%= f.label :attachment %>
+      <%= f.file_field :attachment %>
+      <br />
+      <%= f.submit "Save", class: "button" %>
+   <% end %>
+   </div>
+
+   <p>Please include "ASSIGNMENT NAME - YOUR NAME" in the field above</p>
+
+   <br />
+   <p> Example:</p>
+
+   <small> assignment 1 - Bob Smith</small>
